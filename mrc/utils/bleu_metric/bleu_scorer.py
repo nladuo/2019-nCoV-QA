@@ -42,7 +42,7 @@ def cook_refs(refs, eff=None, n=4): ## lhuang: oracle will call with "average"
     for ref in refs:
         rl, counts = precook(ref, n)
         reflen.append(rl)
-        for (ngram,count) in counts.items():
+        for (ngram, count) in counts.items():
             maxcounts[ngram] = max(maxcounts.get(ngram,0), count)
 
     # Calculate effective reference sentence length.
@@ -57,10 +57,10 @@ def cook_refs(refs, eff=None, n=4): ## lhuang: oracle will call with "average"
 
     return (reflen, maxcounts)
 
-def cook_test(test, xxx_todo_changeme, eff=None, n=4):
+def cook_test(test, reflen, refmaxcounts, eff=None, n=4):
     '''Takes a test sentence and returns an object that
     encapsulates everything that BLEU needs to know about it.'''
-    (reflen, refmaxcounts) = xxx_todo_changeme
+
     testlen, counts = precook(test, n, True)
 
     result = {}
@@ -112,7 +112,9 @@ class BleuScorer(object):
         if refs is not None:
             self.crefs.append(cook_refs(refs))
             if test is not None:
-                cooked_test = cook_test(test, self.crefs[-1])
+                #print("Debug>>>", self.crefs[-1])
+                arr = self.crefs[-1]
+                cooked_test = cook_test(test, arr[0], arr[1])
                 self.ctest.append(cooked_test) ## N.B.: -1
             else:
                 self.ctest.append(None) # lens of crefs and ctest have to match
@@ -261,4 +263,3 @@ class BleuScorer(object):
 
         self._score = bleus
         return self._score, bleu_list
-

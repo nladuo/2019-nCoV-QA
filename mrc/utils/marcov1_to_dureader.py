@@ -35,4 +35,3 @@ if __name__ == '__main__':
         marco_js = json.loads(row[1].to_json())
         dureader_js = trans(marco_js)
         print(json.dumps(dureader_js))
-

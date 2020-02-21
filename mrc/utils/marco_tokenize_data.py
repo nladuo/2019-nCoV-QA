@@ -41,4 +41,3 @@ if __name__ == '__main__':
         dureader_js = json.loads(line.strip())
         segment(dureader_js)
         print(json.dumps(dureader_js))
-
