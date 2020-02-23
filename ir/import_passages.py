@@ -14,7 +14,7 @@ with open("DXY-COVID-19-Data/csv/DXYNews.csv", newline='', encoding='utf-8') as 
                 news.insert({
                     "id": row[0],
                     "time": row[2],
-                    "content": row[4]
+                    "content": row[4]+" "+row[2]
                 })
 
 with open("DXY-COVID-19-Data/csv/DXYRumors.csv", newline='', encoding='utf-8') as f:
