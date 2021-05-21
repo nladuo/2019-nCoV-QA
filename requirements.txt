@@ -1,4 +1,4 @@
 elasticsearch==7.5.1
-tensorflow==1.15.2
+tensorflow==2.5.0
 dotmap
 jieba==0.42.1
